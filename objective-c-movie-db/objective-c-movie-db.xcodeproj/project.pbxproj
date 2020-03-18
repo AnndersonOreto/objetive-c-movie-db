@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09A2422842A00994BE1 /* TableViewCellController.m */; };
 		266FC09E24228B9100994BE1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09D24228B9100994BE1 /* DetailViewController.m */; };
+		266FC0A12422964600994BE1 /* Services.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC0A02422964600994BE1 /* Services.m */; };
 		269F2CCD241FF49C00EF4556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 269F2CCC241FF49C00EF4556 /* AppDelegate.m */; };
 		269F2CD0241FF49C00EF4556 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 269F2CCF241FF49C00EF4556 /* SceneDelegate.m */; };
 		269F2CD3241FF49C00EF4556 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269F2CD2241FF49C00EF4556 /* ViewController.m */; };
@@ -24,6 +25,8 @@
 		266FC09C2422844300994BE1 /* TableViewCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellController.h; sourceTree = "<group>"; };
 		266FC09D24228B9100994BE1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		266FC09F24228BD200994BE1 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		266FC0A02422964600994BE1 /* Services.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Services.m; sourceTree = "<group>"; };
+		266FC0A32422980D00994BE1 /* Services.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Services.h; sourceTree = "<group>"; };
 		269F2CC8241FF49C00EF4556 /* objective-c-movie-db.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "objective-c-movie-db.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		269F2CCB241FF49C00EF4556 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		269F2CCC241FF49C00EF4556 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 				269F2CDF241FF49E00EF4556 /* Info.plist */,
 				269F2CE0241FF49E00EF4556 /* main.m */,
 				269F2CD7241FF49C00EF4556 /* objective_c_movie_db.xcdatamodeld */,
+				266FC0A02422964600994BE1 /* Services.m */,
+				266FC0A32422980D00994BE1 /* Services.h */,
 			);
 			path = "objective-c-movie-db";
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				269F2CE1241FF49E00EF4556 /* main.m in Sources */,
+				266FC0A12422964600994BE1 /* Services.m in Sources */,
 				266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */,
 				269F2CD3241FF49C00EF4556 /* ViewController.m in Sources */,
 				269F2CCD241FF49C00EF4556 /* AppDelegate.m in Sources */,

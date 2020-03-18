@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "DetailViewController.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource> {
+    NSArray *movieTitle;
+}
 
 @end
 
