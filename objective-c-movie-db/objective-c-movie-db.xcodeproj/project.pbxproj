@@ -53,6 +53,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		266FC0A42422A9FB00994BE1 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				269F2CCB241FF49C00EF4556 /* AppDelegate.h */,
+				269F2CCC241FF49C00EF4556 /* AppDelegate.m */,
+				269F2CCE241FF49C00EF4556 /* SceneDelegate.h */,
+				269F2CCF241FF49C00EF4556 /* SceneDelegate.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		266FC0A52422AA3600994BE1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				269F2CD1241FF49C00EF4556 /* ViewController.h */,
+				269F2CD2241FF49C00EF4556 /* ViewController.m */,
+				266FC09C2422844300994BE1 /* TableViewCellController.h */,
+				266FC09A2422842A00994BE1 /* TableViewCellController.m */,
+				266FC09F24228BD200994BE1 /* DetailViewController.h */,
+				266FC09D24228B9100994BE1 /* DetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		266FC0A62422AA5900994BE1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				266FC0A02422964600994BE1 /* Services.m */,
+				266FC0A32422980D00994BE1 /* Services.h */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		266FC0A82422ACCB00994BE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				269F2CD4241FF49C00EF4556 /* Main.storyboard */,
+				269F2CDC241FF49E00EF4556 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		269F2CBF241FF49C00EF4556 = {
 			isa = PBXGroup;
 			children = (
@@ -72,24 +114,14 @@
 		269F2CCA241FF49C00EF4556 /* objective-c-movie-db */ = {
 			isa = PBXGroup;
 			children = (
-				269F2CCB241FF49C00EF4556 /* AppDelegate.h */,
-				269F2CCC241FF49C00EF4556 /* AppDelegate.m */,
-				269F2CCE241FF49C00EF4556 /* SceneDelegate.h */,
-				269F2CCF241FF49C00EF4556 /* SceneDelegate.m */,
-				269F2CD1241FF49C00EF4556 /* ViewController.h */,
-				269F2CD2241FF49C00EF4556 /* ViewController.m */,
-				266FC09C2422844300994BE1 /* TableViewCellController.h */,
-				266FC09A2422842A00994BE1 /* TableViewCellController.m */,
-				266FC09F24228BD200994BE1 /* DetailViewController.h */,
-				266FC09D24228B9100994BE1 /* DetailViewController.m */,
-				269F2CD4241FF49C00EF4556 /* Main.storyboard */,
+				266FC0A42422A9FB00994BE1 /* Support */,
+				266FC0A62422AA5900994BE1 /* Services */,
+				266FC0A82422ACCB00994BE1 /* View */,
+				266FC0A52422AA3600994BE1 /* Controller */,
 				269F2CDA241FF49E00EF4556 /* Assets.xcassets */,
-				269F2CDC241FF49E00EF4556 /* LaunchScreen.storyboard */,
 				269F2CDF241FF49E00EF4556 /* Info.plist */,
 				269F2CE0241FF49E00EF4556 /* main.m */,
 				269F2CD7241FF49C00EF4556 /* objective_c_movie_db.xcdatamodeld */,
-				266FC0A02422964600994BE1 /* Services.m */,
-				266FC0A32422980D00994BE1 /* Services.h */,
 			);
 			path = "objective-c-movie-db";
 			sourceTree = "<group>";

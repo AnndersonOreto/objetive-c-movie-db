@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Services : NSObject
-
+- (void)getPopularMovies;
 
 @end
 

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DetailViewController.h"
+#import "Services.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource> {
     NSArray *movieTitle;
@@ -19,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    Services *service = [[Services alloc] init];
+    [service getPopularMovies];
     
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     // Do any additional setup after loading the view.
