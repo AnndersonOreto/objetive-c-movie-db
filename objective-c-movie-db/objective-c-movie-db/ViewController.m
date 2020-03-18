@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DetailViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -50,6 +51,15 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     view.tintColor = [UIColor whiteColor];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self passData];
+}
+
+- (void)passData {
+    DetailViewController *cell = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
+    [self.navigationController pushViewController:cell animated:YES];
 }
 
 

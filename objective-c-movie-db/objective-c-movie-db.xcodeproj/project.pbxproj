@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09A2422842A00994BE1 /* TableViewCellController.m */; };
+		266FC09E24228B9100994BE1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09D24228B9100994BE1 /* DetailViewController.m */; };
 		269F2CCD241FF49C00EF4556 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 269F2CCC241FF49C00EF4556 /* AppDelegate.m */; };
 		269F2CD0241FF49C00EF4556 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 269F2CCF241FF49C00EF4556 /* SceneDelegate.m */; };
 		269F2CD3241FF49C00EF4556 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 269F2CD2241FF49C00EF4556 /* ViewController.m */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		266FC09A2422842A00994BE1 /* TableViewCellController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellController.m; sourceTree = "<group>"; };
+		266FC09C2422844300994BE1 /* TableViewCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellController.h; sourceTree = "<group>"; };
+		266FC09D24228B9100994BE1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		266FC09F24228BD200994BE1 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		269F2CC8241FF49C00EF4556 /* objective-c-movie-db.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "objective-c-movie-db.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		269F2CCB241FF49C00EF4556 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		269F2CCC241FF49C00EF4556 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +75,10 @@
 				269F2CCF241FF49C00EF4556 /* SceneDelegate.m */,
 				269F2CD1241FF49C00EF4556 /* ViewController.h */,
 				269F2CD2241FF49C00EF4556 /* ViewController.m */,
+				266FC09C2422844300994BE1 /* TableViewCellController.h */,
+				266FC09A2422842A00994BE1 /* TableViewCellController.m */,
+				266FC09F24228BD200994BE1 /* DetailViewController.h */,
+				266FC09D24228B9100994BE1 /* DetailViewController.m */,
 				269F2CD4241FF49C00EF4556 /* Main.storyboard */,
 				269F2CDA241FF49E00EF4556 /* Assets.xcassets */,
 				269F2CDC241FF49E00EF4556 /* LaunchScreen.storyboard */,
@@ -150,10 +160,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				269F2CE1241FF49E00EF4556 /* main.m in Sources */,
+				266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */,
 				269F2CD3241FF49C00EF4556 /* ViewController.m in Sources */,
 				269F2CCD241FF49C00EF4556 /* AppDelegate.m in Sources */,
 				269F2CD9241FF49C00EF4556 /* objective_c_movie_db.xcdatamodeld in Sources */,
 				269F2CD0241FF49C00EF4556 /* SceneDelegate.m in Sources */,
+				266FC09E24228B9100994BE1 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
