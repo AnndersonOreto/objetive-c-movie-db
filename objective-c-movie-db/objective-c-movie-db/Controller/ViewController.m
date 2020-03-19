@@ -15,9 +15,6 @@
     Services *service;
 }
 
-@property (nonatomic, strong) NSMutableArray *popularMovies;
-@property (nonatomic, strong) NSMutableArray *nowPlaying;
-
 @end
 
 @implementation ViewController
@@ -28,11 +25,17 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
     
-        self.popularMovies = [self->service getPopularMovies];
+        [self->service getPopularMovies];
+        
+        sleep(5);
+        
+        self.popularMovies = self->service.popularMovies;
         
         [self.moviesTableView reloadData];
         
     });
+    
+    
     
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     // Do any additional setup after loading the view.

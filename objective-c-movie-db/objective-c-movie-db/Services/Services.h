@@ -9,14 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Movie.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface Services : NSObject
 
 @property (strong, nonatomic) NSMutableArray<Movie*> *popularMovies;
 @property (strong, nonatomic) NSMutableArray<Movie*> *nowPlayingMovies;
 
-- (NSMutableArray*)getPopularMovies;
+- (void)getPopularMovies;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 
 

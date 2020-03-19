@@ -14,51 +14,40 @@
 
 @implementation Services
 
-- (NSMutableArray*)getPopularMovies {
+//- (instancetype) init {
+//    self = [super init];
+//
+//    return self;
+//}
+
+- (void)getPopularMovies {
+    NSString *urlString = @"https://api.themoviedb.org/3/movie/now_playing?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
+    NSURL *url = [NSURL URLWithString:urlString];
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    // insert whatever URL you would like to connect to
-    [request setURL:[NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1"]];
-    
-    NSURLSessionDataTask *task = [[self getURLSession] dataTaskWithRequest:request completionHandler:^( NSData *data, NSURLResponse *response, NSError *error )
-    {
-        dispatch_async( dispatch_get_main_queue(),
-        ^{
-             NSError *jsonError;
-             NSDictionary *parsedJSONArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
-             
-             NSLog( @"%@", parsedJSONArray );
+    [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSError *err;
+        NSDictionary *parsedJSON2 = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+        
+            if (err) {
+                NSLog(@"Failed to serialize data into JSON: %@", err);
+                return;
+            }
             
-            NSArray *movies = parsedJSONArray[@"results"];
-            for (NSDictionary *movieDictionary in movies) {
+            self.popularMovies = NSMutableArray.new;
+            
+            NSArray *moviesArray = parsedJSON2[@"results"];
+            for (NSDictionary *movieDictionary in moviesArray) {
                 Movie *movie = Movie.new;
                 movie = [movie parseDictionary:movieDictionary];
                 
                 [self.popularMovies addObject:movie];
+                
             }
-            // parse returned data
-            //NSString *result = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-            
-            //NSLog( @"%@", result );
-        } );
-      
-    }];
+        
+        
+    }] resume];
     
-    [task resume];
-    
-    return _popularMovies;
-}
-
-- ( NSURLSession * )getURLSession {
-    static NSURLSession *session = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once( &onceToken,
-    ^{
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        session = [NSURLSession sessionWithConfiguration:configuration];
-    } );
-    
-    return session;
 }
 
 @end

@@ -7,13 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface ViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
+
+@property (nonatomic, strong) NSMutableArray<Movie*> *popularMovies;
+@property (nonatomic, strong) NSMutableArray<Movie*> *nowPlaying;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)NSIndexPath;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
