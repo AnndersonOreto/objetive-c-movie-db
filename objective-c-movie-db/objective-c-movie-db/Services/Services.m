@@ -6,6 +6,7 @@
 //  Copyright © 2020 Annderson Packeiser Oreto. All rights reserved.
 //
 #import "Services.h"
+#import "Movie.h"
 
 @interface Services ()
 
@@ -13,7 +14,7 @@
 
 @implementation Services
 
-- (void)getPopularMovies {
+- (NSMutableArray*)getPopularMovies {
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     // insert whatever URL you would like to connect to
@@ -24,9 +25,17 @@
         dispatch_async( dispatch_get_main_queue(),
         ^{
              NSError *jsonError;
-             NSArray *parsedJSONArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+             NSDictionary *parsedJSONArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
              
              NSLog( @"%@", parsedJSONArray );
+            
+            NSArray *movies = parsedJSONArray[@"results"];
+            for (NSDictionary *movieDictionary in movies) {
+                Movie *movie = Movie.new;
+                movie = [movie parseDictionary:movieDictionary];
+                
+                [self.popularMovies addObject:movie];
+            }
             // parse returned data
             //NSString *result = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             
@@ -36,6 +45,8 @@
     }];
     
     [task resume];
+    
+    return _popularMovies;
 }
 
 - ( NSURLSession * )getURLSession {

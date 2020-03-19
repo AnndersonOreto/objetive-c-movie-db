@@ -10,6 +10,9 @@
 
 @interface TableViewCellController : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 @end
 

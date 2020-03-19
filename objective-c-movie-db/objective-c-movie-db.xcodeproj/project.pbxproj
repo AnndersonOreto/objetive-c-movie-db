@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26068C6B2423DF2B00C2B092 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 26068C6A2423DF2B00C2B092 /* Movie.m */; };
 		266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09A2422842A00994BE1 /* TableViewCellController.m */; };
 		266FC09E24228B9100994BE1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09D24228B9100994BE1 /* DetailViewController.m */; };
 		266FC0A12422964600994BE1 /* Services.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC0A02422964600994BE1 /* Services.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26068C6A2423DF2B00C2B092 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		26068C6C2423DF5900C2B092 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		266FC09A2422842A00994BE1 /* TableViewCellController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellController.m; sourceTree = "<group>"; };
 		266FC09C2422844300994BE1 /* TableViewCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellController.h; sourceTree = "<group>"; };
 		266FC09D24228B9100994BE1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
@@ -53,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26068C692423DEE400C2B092 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26068C6A2423DF2B00C2B092 /* Movie.m */,
+				26068C6C2423DF5900C2B092 /* Movie.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		266FC0A42422A9FB00994BE1 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +128,7 @@
 			children = (
 				266FC0A42422A9FB00994BE1 /* Support */,
 				266FC0A62422AA5900994BE1 /* Services */,
+				26068C692423DEE400C2B092 /* Model */,
 				266FC0A82422ACCB00994BE1 /* View */,
 				266FC0A52422AA3600994BE1 /* Controller */,
 				269F2CDA241FF49E00EF4556 /* Assets.xcassets */,
@@ -202,6 +215,7 @@
 				269F2CD3241FF49C00EF4556 /* ViewController.m in Sources */,
 				269F2CCD241FF49C00EF4556 /* AppDelegate.m in Sources */,
 				269F2CD9241FF49C00EF4556 /* objective_c_movie_db.xcdatamodeld in Sources */,
+				26068C6B2423DF2B00C2B092 /* Movie.m in Sources */,
 				269F2CD0241FF49C00EF4556 /* SceneDelegate.m in Sources */,
 				266FC09E24228B9100994BE1 /* DetailViewController.m in Sources */,
 			);

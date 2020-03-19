@@ -70,9 +70,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="descriptionLabel" destination="LNo-nc-myK" id="MfT-Ob-F3S"/>
-                                    <outlet property="movieTitleLabel" destination="XMu-1m-8Ji" id="mPj-oE-wQ8"/>
-                                    <outlet property="ratingLabel" destination="yxC-1D-9JF" id="CKM-Vc-Wj4"/>
+                                    <outlet property="descriptionLabel" destination="LNo-nc-myK" id="BVB-kt-Pab"/>
+                                    <outlet property="movieTitleLabel" destination="XMu-1m-8Ji" id="svx-FG-ODG"/>
+                                    <outlet property="ratingLabel" destination="yxC-1D-9JF" id="pHB-Ut-PJq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -82,6 +82,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movies" largeTitleDisplayMode="always" id="Aoc-32-zvu"/>
+                    <connections>
+                        <outlet property="moviesTableView" destination="nR0-tr-xlT" id="ghT-IP-H6T"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEg-cZ-4Wc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

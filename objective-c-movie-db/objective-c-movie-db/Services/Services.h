@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface Services : NSObject
-- (void)getPopularMovies;
+
+@property (strong, nonatomic) NSMutableArray<Movie*> *popularMovies;
+@property (strong, nonatomic) NSMutableArray<Movie*> *nowPlayingMovies;
+
+- (NSMutableArray*)getPopularMovies;
 
 @end
 

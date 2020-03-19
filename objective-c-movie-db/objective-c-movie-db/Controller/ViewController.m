@@ -9,10 +9,14 @@
 #import "ViewController.h"
 #import "DetailViewController.h"
 #import "Services.h"
+#import "TableViewCellController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource> {
-    NSArray *movieTitle;
+    Services *service;
 }
+
+@property (nonatomic, strong) NSMutableArray *popularMovies;
+@property (nonatomic, strong) NSMutableArray *nowPlaying;
 
 @end
 
@@ -20,8 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Services *service = [[Services alloc] init];
-    [service getPopularMovies];
+    service = [[Services alloc] init];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
+        self.popularMovies = [self->service getPopularMovies];
+        
+        [self.moviesTableView reloadData];
+        
+    });
     
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     // Do any additional setup after loading the view.
@@ -41,7 +52,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return [self.popularMovies count];
     } else {
         return 20;
     }
@@ -49,7 +60,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellId = @"cell1";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    TableViewCellController *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
+    
+    if (indexPath.section == 0){
+        
+        Movie *movie = self.popularMovies[indexPath.row];
+        
+        if (movie != nil) {
+            cell.movieTitleLabel.text = movie.movieTitle;
+            cell.descriptionLabel.text = movie.movieDescription;
+            cell.ratingLabel.text = movie.movieRating.stringValue;
+        }
+    } else {
+        
+    }
     
     return cell;
 }

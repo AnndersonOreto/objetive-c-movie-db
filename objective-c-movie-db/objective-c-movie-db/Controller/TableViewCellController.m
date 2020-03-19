@@ -9,13 +9,19 @@
 #import "TableViewCellController.h"
 
 @interface TableViewCellController ()
-@property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 @end
 
 @implementation TableViewCellController
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+}
+
 
 
 @end
