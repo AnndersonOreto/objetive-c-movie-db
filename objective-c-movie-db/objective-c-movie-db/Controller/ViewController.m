@@ -27,10 +27,12 @@ NSCache<NSString*, UIImage *> *cache;
     dispatch_async(dispatch_get_main_queue(), ^{
     
         [self->service getPopularMovies];
+        [self->service getNowPlaying];
         
         sleep(5);
         
         self.popularMovies = self->service.popularMovies;
+        self.nowPlaying = self->service.nowPlayingMovies;
         
         [self.moviesTableView reloadData];
         
@@ -106,7 +108,41 @@ NSCache<NSString*, UIImage *> *cache;
             }
         }
     } else {
+        Movie *movie = self.nowPlaying[indexPath.row];
         
+        if (movie != nil) {
+            cell.movieTitleLabel.text = movie.movieTitle;
+            cell.descriptionLabel.text = movie.movieDescription;
+            cell.ratingLabel.text = movie.movieRating.stringValue;
+            
+            NSString *base_url = @"https://image.tmdb.org/t/p/w500";
+            NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, movie.movieImage];
+            cache = [NSCache<NSString*, UIImage *> new];
+            NSURL *url = [NSURL URLWithString:imagePath];
+            UIImage *image = [cache objectForKey:imagePath];
+            
+            if (image == nil) {
+                
+                [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    
+                    if (error) {
+                        return;
+                    }
+                    
+                    UIImage *image = [UIImage imageWithData:data];
+                    [cache setObject: image forKey:imagePath];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imagePoster.image = [cache objectForKey:imagePath];
+                    });
+                    
+                }] resume];
+                
+            } else {
+                
+                cell.imagePoster.image = [cache objectForKey:imagePath];
+            }
+        }
     }
     
     return cell;

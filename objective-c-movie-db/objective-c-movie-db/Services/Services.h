@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray<Movie*> *nowPlayingMovies;
 
 - (void)getPopularMovies;
+- (void)getNowPlaying;
 
 @end
 

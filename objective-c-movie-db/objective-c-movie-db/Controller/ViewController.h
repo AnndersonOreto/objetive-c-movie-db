@@ -17,10 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray<Movie*> *popularMovies;
 @property (nonatomic, strong) NSMutableArray<Movie*> *nowPlaying;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)NSIndexPath;
-
 @end
 
 NS_ASSUME_NONNULL_END
