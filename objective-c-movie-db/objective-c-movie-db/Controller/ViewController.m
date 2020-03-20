@@ -18,6 +18,7 @@
 @end
 
 @implementation ViewController
+NSCache<NSString*, UIImage *> *cache;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,9 +56,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return [self.popularMovies count];
+        return 3;
     } else {
-        return 20;
+        return [self.nowPlaying count];
     }
 }
 
@@ -73,6 +74,34 @@
             cell.movieTitleLabel.text = movie.movieTitle;
             cell.descriptionLabel.text = movie.movieDescription;
             cell.ratingLabel.text = movie.movieRating.stringValue;
+            
+            NSString *base_url = @"https://image.tmdb.org/t/p/w500";
+            NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, movie.movieImage];
+            cache = [NSCache<NSString*, UIImage *> new];
+            NSURL *url = [NSURL URLWithString:imagePath];
+            UIImage *image = [cache objectForKey:imagePath];
+            
+            if (image == nil) {
+                
+                [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    
+                    if (error) {
+                        return;
+                    }
+                    
+                    UIImage *image = [UIImage imageWithData:data];
+                    [cache setObject: image forKey:imagePath];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imagePoster.image = [cache objectForKey:imagePath];
+                    });
+                    
+                }] resume];
+                
+            } else {
+                
+                cell.imagePoster.image = [cache objectForKey:imagePath];
+            }
         }
     } else {
         
@@ -86,12 +115,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self passData];
+    Movie* movie;
+    if (indexPath.section == 0) {
+        movie = self.popularMovies[indexPath.row];
+    } else {
+        movie = self.nowPlaying[indexPath.row];
+    }
+    
+    DetailViewController *cell = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
+    cell.selectedMovie = movie;
+    
+    [self.navigationController pushViewController:cell animated:YES];
 }
 
 - (void)passData {
-    DetailViewController *cell = [self.storyboard instantiateViewControllerWithIdentifier:@"detail"];
-    [self.navigationController pushViewController:cell animated:YES];
 }
 
 

@@ -16,6 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.movieTitleLaabel.text = self.selectedMovie.movieTitle;
+    self.movieRatingLabel.text = self.selectedMovie.movieRating.stringValue;
+    self.movieDescriptionTextView.text = self.selectedMovie.movieDescription;
     // Do any additional setup after loading the view.
 }
 

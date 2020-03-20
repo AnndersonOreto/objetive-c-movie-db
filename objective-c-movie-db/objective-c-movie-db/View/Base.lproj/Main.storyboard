@@ -71,6 +71,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="LNo-nc-myK" id="BVB-kt-Pab"/>
+                                    <outlet property="imagePoster" destination="JNO-qM-Ziu" id="JGf-So-Ken"/>
                                     <outlet property="movieTitleLabel" destination="XMu-1m-8Ji" id="svx-FG-ODG"/>
                                     <outlet property="ratingLabel" destination="yxC-1D-9JF" id="pHB-Ut-PJq"/>
                                 </connections>
@@ -183,6 +184,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vXU-im-lJb"/>
                     </view>
+                    <connections>
+                        <outlet property="movieDescriptionTextView" destination="Vh0-kS-psd" id="dpj-WY-EPj"/>
+                        <outlet property="movieGenderLabel" destination="eSy-5T-uYG" id="xTb-5z-2CN"/>
+                        <outlet property="moviePosterImageView" destination="I81-fl-shR" id="VPu-j2-BBD"/>
+                        <outlet property="movieRatingLabel" destination="JW6-NJ-tnU" id="r7f-BY-6QN"/>
+                        <outlet property="movieTitleLaabel" destination="dS6-Gl-DOk" id="Kfo-hu-Tjj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSZ-um-OUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

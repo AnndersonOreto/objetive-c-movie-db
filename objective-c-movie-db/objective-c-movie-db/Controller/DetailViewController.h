@@ -8,8 +8,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface DetailViewController : UIViewController
+
+@property (nonatomic, strong) Movie* selectedMovie;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitleLaabel;
+@property (weak, nonatomic) IBOutlet UILabel *movieGenderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *movieRatingLabel;
+@property (weak, nonatomic) IBOutlet UITextView *movieDescriptionTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *moviePosterImageView;
 
 
 @end

@@ -20,6 +20,10 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    
+    self.imagePoster.clipsToBounds = YES;
+    
+    self.imagePoster.layer.cornerRadius = 12;
 }
 
 
