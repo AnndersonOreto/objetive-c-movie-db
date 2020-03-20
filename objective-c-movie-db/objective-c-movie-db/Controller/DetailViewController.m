@@ -17,10 +17,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.moviePosterImageView.layer.cornerRadius = 12;
+    self.title = @"Movie Details";
+    self.navigationController.navigationBar.prefersLargeTitles = NO;
+    
     self.movieTitleLaabel.text = self.selectedMovie.movieTitle;
     self.movieRatingLabel.text = self.selectedMovie.movieRating.stringValue;
     self.movieDescriptionTextView.text = self.selectedMovie.movieDescription;
-    // Do any additional setup after loading the view.
+    
+    NSMutableString *baseImageUrl = [NSMutableString stringWithString:@"https://image.tmdb.org/t/p/w500"];
+    NSString *imageURL = [baseImageUrl stringByAppendingString:self.selectedMovie.movieImage];
+    
+    
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
+        
+        if ( data == nil ) return;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UIImage *image = [UIImage imageWithData:data];
+            self.moviePosterImageView.image = image;
+            
+        });
+    });
 }
 
 

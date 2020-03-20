@@ -36,6 +36,8 @@ NSCache<NSString*, UIImage *> *cache;
         
     });
     
+    self.moviesTableView.separatorColor = [UIColor clearColor];
+    
     
     
     self.navigationController.navigationBar.prefersLargeTitles = YES;
