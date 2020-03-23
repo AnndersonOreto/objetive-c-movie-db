@@ -24,26 +24,31 @@ NSCache<NSString*, UIImage *> *cache;
     [super viewDidLoad];
     service = [[Services alloc] init];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
     
-        [self->service getPopularMovies];
-        [self->service getNowPlaying];
+    self.moviesTableView.separatorColor = [UIColor clearColor];
+    
+    [self getMovies];
+    
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
+    // Do any additional setup after loading the view.
+}
+
+- (void)getMovies {
+    
+    [self->service getPopularMovies:^(NSMutableArray<Movie*> *array) {
+        self.popularMovies = array;
+    }];
+    
+    [self->service getNowPlaying:^(NSMutableArray<Movie*> *array) {
+        self.nowPlaying = array;
+    }];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        sleep(5);
-        
-        self.popularMovies = self->service.popularMovies;
-        self.nowPlaying = self->service.nowPlayingMovies;
         
         [self.moviesTableView reloadData];
         
     });
-    
-    self.moviesTableView.separatorColor = [UIColor clearColor];
-    
-    
-    
-    self.navigationController.navigationBar.prefersLargeTitles = YES;
-    // Do any additional setup after loading the view.
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

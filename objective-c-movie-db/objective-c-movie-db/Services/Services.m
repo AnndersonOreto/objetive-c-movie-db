@@ -14,7 +14,7 @@
 
 @implementation Services
 
-- (void)getPopularMovies {
+- (void)getPopularMovies:(void (^)(NSMutableArray *))completionHandler {
     NSString *urlString = @"https://api.themoviedb.org/3/movie/now_playing?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -34,17 +34,18 @@
             for (NSDictionary *movieDictionary in moviesArray) {
                 Movie *movie = Movie.new;
                 movie = [movie parseDictionary:movieDictionary];
-                
                 [self.popularMovies addObject:movie];
                 
             }
+        
+            completionHandler(self.popularMovies);
         
         
     }] resume];
     
 }
 
-- (void)getNowPlaying {
+- (void)getNowPlaying:(void (^)(NSMutableArray *))completionHandler {
     NSString *urlString = @"https://api.themoviedb.org/3/movie/popular?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
     NSURL *url = [NSURL URLWithString:urlString];
     
@@ -64,10 +65,11 @@
             for (NSDictionary *movieDictionary in moviesArray) {
                 Movie *movie = Movie.new;
                 movie = [movie parseDictionary:movieDictionary];
-                
                 [self.nowPlayingMovies addObject:movie];
                 
             }
+        
+            completionHandler(self.nowPlayingMovies);
         
         
     }] resume];
