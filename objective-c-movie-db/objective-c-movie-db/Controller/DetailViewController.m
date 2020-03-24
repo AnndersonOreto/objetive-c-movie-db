@@ -17,13 +17,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupLayout];
+    
+    [self setLabelText];
+    
+    [self setImagePoster];
+}
+
+#pragma mark - Functions
+
+- (void) setupLayout {
+    
     self.moviePosterImageView.layer.cornerRadius = 12;
     self.title = @"Movie Details";
     self.navigationController.navigationBar.prefersLargeTitles = NO;
+}
+
+- (void) setLabelText {
     
     self.movieTitleLaabel.text = self.selectedMovie.movieTitle;
     self.movieRatingLabel.text = self.selectedMovie.movieRating.stringValue;
     self.movieDescriptionTextView.text = self.selectedMovie.movieDescription;
+}
+
+- (void) setImagePoster {
     
     NSMutableString *baseImageUrl = [NSMutableString stringWithString:@"https://image.tmdb.org/t/p/w500"];
     NSString *imageURL = [baseImageUrl stringByAppendingString:self.selectedMovie.movieImage];
