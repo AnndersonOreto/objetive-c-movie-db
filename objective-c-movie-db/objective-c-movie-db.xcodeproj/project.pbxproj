@@ -62,8 +62,8 @@
 		26068C692423DEE400C2B092 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				26068C6A2423DF2B00C2B092 /* Movie.m */,
 				26068C6C2423DF5900C2B092 /* Movie.h */,
+				26068C6A2423DF2B00C2B092 /* Movie.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,10 +95,10 @@
 		266FC0A62422AA5900994BE1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				266FC0A02422964600994BE1 /* Services.m */,
 				266FC0A32422980D00994BE1 /* Services.h */,
-				2658D598242A82E2000DD3E9 /* Parser.m */,
+				266FC0A02422964600994BE1 /* Services.m */,
 				2658D59A242A8309000DD3E9 /* Parser.h */,
+				2658D598242A82E2000DD3E9 /* Parser.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
