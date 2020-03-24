@@ -10,23 +10,4 @@
 
 @implementation Movie
 
-- (id)parseDictionary:(NSDictionary *)dictionary {
-    
-    if (self) {
-        
-        NSString *title = dictionary[@"title"];
-        NSString *overview = dictionary[@"overview"];
-        NSNumber *rating = dictionary[@"vote_average"];
-        NSString *imageUrl = dictionary[@"poster_path"];
-
-        
-        self.movieTitle = title;
-        self.movieDescription = overview;
-        self.movieRating = rating;
-        self.movieImage = imageUrl;
-    }
-    
-    return self;
-}
-
 @end

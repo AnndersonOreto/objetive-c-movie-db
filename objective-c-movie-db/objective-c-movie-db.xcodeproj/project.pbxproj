@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26068C6B2423DF2B00C2B092 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 26068C6A2423DF2B00C2B092 /* Movie.m */; };
+		2658D599242A82E2000DD3E9 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2658D598242A82E2000DD3E9 /* Parser.m */; };
 		266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09A2422842A00994BE1 /* TableViewCellController.m */; };
 		266FC09E24228B9100994BE1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC09D24228B9100994BE1 /* DetailViewController.m */; };
 		266FC0A12422964600994BE1 /* Services.m in Sources */ = {isa = PBXBuildFile; fileRef = 266FC0A02422964600994BE1 /* Services.m */; };
@@ -24,6 +25,8 @@
 /* Begin PBXFileReference section */
 		26068C6A2423DF2B00C2B092 /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		26068C6C2423DF5900C2B092 /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		2658D598242A82E2000DD3E9 /* Parser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
+		2658D59A242A8309000DD3E9 /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		266FC09A2422842A00994BE1 /* TableViewCellController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellController.m; sourceTree = "<group>"; };
 		266FC09C2422844300994BE1 /* TableViewCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellController.h; sourceTree = "<group>"; };
 		266FC09D24228B9100994BE1 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 			children = (
 				266FC0A02422964600994BE1 /* Services.m */,
 				266FC0A32422980D00994BE1 /* Services.h */,
+				2658D598242A82E2000DD3E9 /* Parser.m */,
+				2658D59A242A8309000DD3E9 /* Parser.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -213,6 +218,7 @@
 				266FC0A12422964600994BE1 /* Services.m in Sources */,
 				266FC09B2422842A00994BE1 /* TableViewCellController.m in Sources */,
 				269F2CD3241FF49C00EF4556 /* ViewController.m in Sources */,
+				2658D599242A82E2000DD3E9 /* Parser.m in Sources */,
 				269F2CCD241FF49C00EF4556 /* AppDelegate.m in Sources */,
 				269F2CD9241FF49C00EF4556 /* objective_c_movie_db.xcdatamodeld in Sources */,
 				26068C6B2423DF2B00C2B092 /* Movie.m in Sources */,

@@ -12,6 +12,8 @@
 
 @interface DetailViewController : UIViewController
 
+#pragma mark - Variables
+
 @property (nonatomic, strong) Movie* selectedMovie;
 @property (weak, nonatomic) IBOutlet UILabel *movieTitleLaabel;
 @property (weak, nonatomic) IBOutlet UILabel *movieGenderLabel;

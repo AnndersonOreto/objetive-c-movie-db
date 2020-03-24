@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Movie : NSObject
 
+#pragma mark - Variables
+
 @property (nonatomic, strong) NSString *movieTitle;
 @property (nonatomic, strong) NSString *movieDescription;
 @property (nonatomic, strong) NSNumber *movieRating;
 @property (nonatomic, strong) NSString *movieImage;
-
-- (id) parseDictionary:(NSDictionary *)dictionary;
 
 @end
 

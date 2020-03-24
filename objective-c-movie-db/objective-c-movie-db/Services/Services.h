@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Services : NSObject
 
-@property (strong, nonatomic) NSMutableArray<Movie*> *popularMovies;
-@property (strong, nonatomic) NSMutableArray<Movie*> *nowPlayingMovies;
+#pragma mark - Variables
+
+
+
+#pragma mark - Functions
 
 - (void)getPopularMovies:(void (^)(NSMutableArray *)) completionHandler;
 - (void)getNowPlaying:(void (^)(NSMutableArray *)) completionHandler;
