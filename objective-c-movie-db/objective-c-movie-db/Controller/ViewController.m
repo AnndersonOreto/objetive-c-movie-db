@@ -86,7 +86,7 @@
     
     Movie *movie = Movie.new;
     
-    if (indexPath.section == 0){
+    if (indexPath.section == POPULAR_MOVIES){
         movie = self.popularMovies[indexPath.row];
     } else {
         movie = self.nowPlaying[indexPath.row];
@@ -113,8 +113,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     Movie* movie;
-    if (indexPath.section == 0) {
+    if (indexPath.section == POPULAR_MOVIES) {
         movie = self.popularMovies[indexPath.row];
     } else {
         movie = self.nowPlaying[indexPath.row];
@@ -124,9 +125,6 @@
     cell.selectedMovie = movie;
     
     [self.navigationController pushViewController:cell animated:YES];
-}
-
-- (void)passData {
 }
 
 
