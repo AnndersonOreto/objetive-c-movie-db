@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Variables
 
-
+@property (nonatomic, strong) NSString *popularMoviesURL;
+@property (nonatomic, strong) NSString *nowPlayingURL;
 
 #pragma mark - Functions
 

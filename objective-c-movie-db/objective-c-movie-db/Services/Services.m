@@ -37,13 +37,24 @@
 }
 */
 
+- (instancetype)init {
+    
+    if (self) {
+        
+        self.popularMoviesURL = @"https://api.themoviedb.org/3/movie/now_playing?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
+        self.nowPlayingURL = @"https://api.themoviedb.org/3/movie/popular?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
+    }
+    
+    return self;
+}
+
 #pragma mark - API request functions
 
 // Fetch data from API of popular movies
 - (void)getPopularMovies:(void (^)(NSMutableArray *))completionHandler {
     
     // Popular movies URL
-    NSString *urlString = @"https://api.themoviedb.org/3/movie/now_playing?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
+    NSString *urlString = _popularMoviesURL;
     NSURL *url = [NSURL URLWithString:urlString];
     
     // Start session to retrieve JSON from data
@@ -79,7 +90,7 @@
 - (void)getNowPlaying:(void (^)(NSMutableArray *))completionHandler {
     
     // Now playing URL
-    NSString *urlString = @"https://api.themoviedb.org/3/movie/popular?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
+    NSString *urlString = _nowPlayingURL;
     NSURL *url = [NSURL URLWithString:urlString];
     
     // Start session to retrieve JSON from data

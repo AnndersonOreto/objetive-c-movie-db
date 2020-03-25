@@ -7,8 +7,11 @@
 //
 
 #import "DetailViewController.h"
+#import "Services.h"
 
-@interface DetailViewController ()
+@interface DetailViewController () {
+    Services *service;
+}
 
 @end
 
@@ -42,23 +45,31 @@
 
 - (void) setImagePoster {
     
-    NSMutableString *baseImageUrl = [NSMutableString stringWithString:@"https://image.tmdb.org/t/p/w500"];
-    NSString *imageURL = [baseImageUrl stringByAppendingString:self.selectedMovie.movieImage];
+     NSMutableString *baseImageUrl = [NSMutableString stringWithString:@"https://image.tmdb.org/t/p/w500"];
+     NSString *imageURL = [baseImageUrl stringByAppendingString:self.selectedMovie.movieImage];
+     
+     
+     dispatch_async(dispatch_get_global_queue(0,0), ^{
+         
+         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
+         
+         if ( data == nil ) return;
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             UIImage *image = [UIImage imageWithData:data];
+             self.moviePosterImageView.image = image;
+             
+         });
+     });
     
-    
-    dispatch_async(dispatch_get_global_queue(0,0), ^{
-        
-        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
-        
-        if ( data == nil ) return;
-        
+    /*
+    [service getImage:self.selectedMovie.movieImage completion:^(UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            UIImage *image = [UIImage imageWithData:data];
             self.moviePosterImageView.image = image;
-            
         });
-    });
+    }];
+     */
 }
 
 
