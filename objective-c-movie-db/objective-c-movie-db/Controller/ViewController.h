@@ -11,11 +11,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - Variables
+
 @interface ViewController : UITableViewController
 @property (strong, nonatomic) IBOutlet UITableView *moviesTableView;
 
 @property (nonatomic, strong) NSMutableArray<Movie*> *popularMovies;
 @property (nonatomic, strong) NSMutableArray<Movie*> *nowPlaying;
+
+typedef NS_ENUM(NSInteger, SectionName) {
+    NOW_PLAYING         = 1,
+    POPULAR_MOVIES      = 0
+};
 
 @end
 

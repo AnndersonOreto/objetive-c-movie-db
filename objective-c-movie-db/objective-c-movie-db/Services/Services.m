@@ -9,7 +9,9 @@
 #import "Movie.h"
 #import "Parser.h"
 
-@interface Services ()
+@interface Services () {
+    NSCache<NSString*, UIImage *> *cache;
+}
 
 @end
 
@@ -107,6 +109,36 @@
         
     }] resume];
     
+}
+
+// Return image from API
+- (void)getImage:(NSString *)imageName completion:(void (^)(UIImage *))completionHandler {
+    
+    NSString *base_url = @"https://image.tmdb.org/t/p/w500";
+    NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, imageName];
+    NSCache<NSString*, UIImage *> *cache = [NSCache<NSString*, UIImage *> new];
+    NSURL *url = [NSURL URLWithString:imagePath];
+    UIImage *image = [cache objectForKey:imagePath];
+    
+    // If image is not in cache
+    if (image == nil) {
+        
+        [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            if (error) {
+                return;
+            }
+            
+            UIImage *image = [UIImage imageWithData:data];
+            [cache setObject: image forKey:imagePath];
+            
+            completionHandler([cache objectForKey:imagePath]);
+            
+        }] resume];
+    } else {
+        
+        completionHandler([cache objectForKey:imagePath]);
+    }
 }
 
 @end

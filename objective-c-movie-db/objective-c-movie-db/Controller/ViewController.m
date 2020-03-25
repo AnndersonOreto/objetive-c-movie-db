@@ -13,12 +13,14 @@
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource> {
     Services *service;
+    SectionName secName;
 }
 
 @end
 
 @implementation ViewController
-NSCache<NSString*, UIImage *> *cache;
+
+#pragma mark - Initializers
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +35,9 @@ NSCache<NSString*, UIImage *> *cache;
     // Do any additional setup after loading the view.
 }
 
+#pragma mark - Functions
+
+// Fetch data to present in tabvle view
 - (void)getMovies {
     
     [self->service getPopularMovies:^(NSMutableArray<Movie*> *array) {
@@ -45,18 +50,21 @@ NSCache<NSString*, UIImage *> *cache;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        
+
         [self.moviesTableView reloadData];
         
     });
 }
+
+#pragma mark - TableView Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    
+    if (section == POPULAR_MOVIES) {
         return @"Popular Movies";
     } else {
         return @"Now Playing";
@@ -64,7 +72,8 @@ NSCache<NSString*, UIImage *> *cache;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+    
+    if (section == POPULAR_MOVIES) {
         return 3;
     } else {
         return [self.nowPlaying count];
@@ -75,79 +84,25 @@ NSCache<NSString*, UIImage *> *cache;
     static NSString *cellId = @"cell1";
     TableViewCellController *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
     
+    Movie *movie = Movie.new;
+    
     if (indexPath.section == 0){
-        
-        Movie *movie = self.popularMovies[indexPath.row];
-        
-        if (movie != nil) {
-            cell.movieTitleLabel.text = movie.movieTitle;
-            cell.descriptionLabel.text = movie.movieDescription;
-            cell.ratingLabel.text = movie.movieRating.stringValue;
-            
-            NSString *base_url = @"https://image.tmdb.org/t/p/w500";
-            NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, movie.movieImage];
-            cache = [NSCache<NSString*, UIImage *> new];
-            NSURL *url = [NSURL URLWithString:imagePath];
-            UIImage *image = [cache objectForKey:imagePath];
-            
-            if (image == nil) {
-                
-                [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    
-                    if (error) {
-                        return;
-                    }
-                    
-                    UIImage *image = [UIImage imageWithData:data];
-                    [cache setObject: image forKey:imagePath];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imagePoster.image = [cache objectForKey:imagePath];
-                    });
-                    
-                }] resume];
-                
-            } else {
-                
-                cell.imagePoster.image = [cache objectForKey:imagePath];
-            }
-        }
+        movie = self.popularMovies[indexPath.row];
     } else {
-        Movie *movie = self.nowPlaying[indexPath.row];
+        movie = self.nowPlaying[indexPath.row];
+    }
+    
+    if (movie != nil) {
         
-        if (movie != nil) {
-            cell.movieTitleLabel.text = movie.movieTitle;
-            cell.descriptionLabel.text = movie.movieDescription;
-            cell.ratingLabel.text = movie.movieRating.stringValue;
-            
-            NSString *base_url = @"https://image.tmdb.org/t/p/w500";
-            NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, movie.movieImage];
-            cache = [NSCache<NSString*, UIImage *> new];
-            NSURL *url = [NSURL URLWithString:imagePath];
-            UIImage *image = [cache objectForKey:imagePath];
-            
-            if (image == nil) {
-                
-                [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                    
-                    if (error) {
-                        return;
-                    }
-                    
-                    UIImage *image = [UIImage imageWithData:data];
-                    [cache setObject: image forKey:imagePath];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imagePoster.image = [cache objectForKey:imagePath];
-                    });
-                    
-                }] resume];
-                
-            } else {
-                
-                cell.imagePoster.image = [cache objectForKey:imagePath];
-            }
-        }
+        cell.movieTitleLabel.text = movie.movieTitle;
+        cell.descriptionLabel.text = movie.movieDescription;
+        cell.ratingLabel.text = movie.movieRating.stringValue;
+        
+        [service getImage:movie.movieImage completion:^(UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.imagePoster.image = image;
+            });
+        }];
     }
     
     return cell;
