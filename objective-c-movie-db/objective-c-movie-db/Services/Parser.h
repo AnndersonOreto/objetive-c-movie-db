@@ -15,5 +15,6 @@
 
 - (Movie *) parseMovie:(NSDictionary *)dictionary;
 - (NSMutableArray<Movie*> *) parseArray:(NSArray *)array;
+- (NSString *) parseGenres:(NSArray *)array;
 
 @end

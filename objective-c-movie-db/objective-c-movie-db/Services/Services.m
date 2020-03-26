@@ -143,7 +143,7 @@
         NSString *genres = NSString.new;
         Parser *parser = Parser.new;
         
-        genrers = [parser parseGenders:moviesArray];
+        genres = [parser parseGenres:moviesArray];
         
         completionHandler(genres);
         

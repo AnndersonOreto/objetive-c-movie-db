@@ -41,6 +41,11 @@
     self.movieTitleLaabel.text = self.selectedMovie.movieTitle;
     self.movieRatingLabel.text = self.selectedMovie.movieRating.stringValue;
     self.movieDescriptionTextView.text = self.selectedMovie.movieDescription;
+    [service getGenre:self.selectedMovie.movieId completion:^(NSString *genres) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        self.movieGenderLabel.text = genres;
+        });
+    }];
 }
 
 - (void) setImagePoster {

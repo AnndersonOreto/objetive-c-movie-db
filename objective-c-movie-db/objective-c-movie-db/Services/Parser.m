@@ -55,11 +55,14 @@
     return movies;
 }
 
+// Parse genders
 - (NSString *) parseGenres:(NSArray *)array {
     
+    // Initialize genre string
     NSString *genres = @"";
     NSMutableString *resp = NSMutableString.new;
     
+    // Concatenate genres
     for (NSDictionary *dict in array) {
         [resp appendString:dict[@"name"]];
     }

@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getNowPlaying:(void (^)(NSMutableArray *)) completionHandler;
 - (void) getImage:(NSString *)imageName completion:(void (^)(UIImage *))completionHandler;
 - (void)loadImage:(NSString *)imageName completion:(void (^)(UIImage *))completionHandler;
+- (void)getGenre:(NSString *)movieId completion:(void (^)(NSString *))completionHandler;
 
 @end
 
