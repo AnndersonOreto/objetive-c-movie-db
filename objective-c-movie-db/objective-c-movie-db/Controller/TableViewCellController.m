@@ -7,8 +7,11 @@
 //
 
 #import "TableViewCellController.h"
+#import "Services.h"
 
-@interface TableViewCellController ()
+@interface TableViewCellController () {
+    Services *service;
+}
 
 @end
 
@@ -18,12 +21,16 @@
     [super awakeFromNib];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+- (void)prepareForReuse {
+    [super prepareForReuse];
     
     self.imagePoster.clipsToBounds = YES;
     
     self.imagePoster.layer.cornerRadius = 12;
+    
+    self.movieTitleLabel.text = _movie.movieTitle;
+    self.descriptionLabel.text = _movie.movieDescription;
+    self.ratingLabel.text = _movie.movieRating.stringValue;
 }
 
 

@@ -94,9 +94,7 @@
     
     if (movie != nil) {
         
-        cell.movieTitleLabel.text = movie.movieTitle;
-        cell.descriptionLabel.text = movie.movieDescription;
-        cell.ratingLabel.text = movie.movieRating.stringValue;
+        cell.movie = movie;
         
         [service getImage:movie.movieImage completion:^(UIImage *image) {
             dispatch_async(dispatch_get_main_queue(), ^{
