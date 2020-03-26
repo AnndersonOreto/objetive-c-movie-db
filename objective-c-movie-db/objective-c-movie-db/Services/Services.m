@@ -127,7 +127,7 @@
     
     NSString *base_url = @"https://image.tmdb.org/t/p/w500";
     NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, imageName];
-    NSCache<NSString*, UIImage *> *cache = [NSCache<NSString*, UIImage *> new];
+    cache = [NSCache<NSString*, UIImage *> new];
     NSURL *url = [NSURL URLWithString:imagePath];
     UIImage *image = [cache objectForKey:imagePath];
     
@@ -141,9 +141,9 @@
             }
             
             UIImage *image = [UIImage imageWithData:data];
-            [cache setObject: image forKey:imagePath];
+            [self->cache setObject: image forKey:imagePath];
             
-            completionHandler([cache objectForKey:imagePath]);
+            completionHandler([self->cache objectForKey:imagePath]);
             
         }] resume];
     } else {
