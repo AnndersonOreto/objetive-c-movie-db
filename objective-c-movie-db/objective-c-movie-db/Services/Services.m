@@ -21,21 +21,21 @@
 
 // Creating singleton
 /*
-+ (instancetype)sharedInstance {
-    
-    // Static variable of Services class
-    static Services *sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    
-    // Initializing class once
-    dispatch_once(&onceToken, ^{
-        
-        sharedInstance = [[Services alloc] init];
-    });
-    
-    return sharedInstance;
-}
-*/
+ + (instancetype)sharedInstance {
+ 
+ // Static variable of Services class
+ static Services *sharedInstance = nil;
+ static dispatch_once_t onceToken;
+ 
+ // Initializing class once
+ dispatch_once(&onceToken, ^{
+ 
+ sharedInstance = [[Services alloc] init];
+ });
+ 
+ return sharedInstance;
+ }
+ */
 
 - (instancetype)init {
     
@@ -43,6 +43,7 @@
         
         self.popularMoviesURL = @"https://api.themoviedb.org/3/movie/now_playing?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
         self.nowPlayingURL = @"https://api.themoviedb.org/3/movie/popular?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US&page=1";
+        cache = [NSCache<NSString*, UIImage *> new];
     }
     
     return self;
@@ -122,12 +123,38 @@
     
 }
 
+- (void)getGenre:(NSString *)movieId completion:(void (^)(NSString *))completionHandler {
+    
+    NSString *baseURL1 = @"https://api.themoviedb.org/3/movie/\\";
+    NSString *baseURL2 = @"?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US";
+    NSString *resultURL = [NSString stringWithFormat: @"%@%@%@", baseURL1, movieId, baseURL2];
+    NSURL *url = [NSURL URLWithString:resultURL];
+    
+    [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSError *err;
+        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+        
+        if (error) {
+            return;
+        }
+        
+        NSArray *moviesArray = JSON[@"genres"];
+        NSString *genres = NSString.new;
+        Parser *parser = Parser.new;
+        
+        genrers = [parser parseGenders:moviesArray];
+        
+        completionHandler(genres);
+        
+    }] resume];
+}
+
 // Return image from API
 - (void)getImage:(NSString *)imageName completion:(void (^)(UIImage *))completionHandler {
     
     NSString *base_url = @"https://image.tmdb.org/t/p/w500";
     NSString *imagePath = [NSString stringWithFormat: @"%@%@", base_url, imageName];
-    cache = [NSCache<NSString*, UIImage *> new];
     NSURL *url = [NSURL URLWithString:imagePath];
     UIImage *image = [cache objectForKey:imagePath];
     
@@ -140,6 +167,7 @@
                 return;
             }
             
+            // Build image from fetched data
             UIImage *image = [UIImage imageWithData:data];
             [self->cache setObject: image forKey:imagePath];
             
@@ -163,7 +191,7 @@
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
         
         if ( data == nil ) return;
-            
+        
         UIImage *image = [UIImage imageWithData:data];
         completionHandler(image);
     });

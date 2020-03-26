@@ -27,10 +27,6 @@
     self.imagePoster.clipsToBounds = YES;
     
     self.imagePoster.layer.cornerRadius = 12;
-    
-    self.movieTitleLabel.text = _movie.movieTitle;
-    self.descriptionLabel.text = _movie.movieDescription;
-    self.ratingLabel.text = _movie.movieRating.stringValue;
 }
 
 

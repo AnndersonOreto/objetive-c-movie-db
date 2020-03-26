@@ -21,6 +21,7 @@
     NSString *overview = dictionary[@"overview"];
     NSNumber *rating = dictionary[@"vote_average"];
     NSString *imageUrl = dictionary[@"poster_path"];
+    NSString *movieId = dictionary[@"id"];
     
     // Create object with information
     Movie *movie = Movie.new;
@@ -29,6 +30,7 @@
     movie.movieDescription = overview;
     movie.movieRating = rating;
     movie.movieImage = imageUrl;
+    movie.movieId = movieId;
     
     return movie;
 }
@@ -51,6 +53,20 @@
     }
     
     return movies;
+}
+
+- (NSString *) parseGenres:(NSArray *)array {
+    
+    NSString *genres = @"";
+    NSMutableString *resp = NSMutableString.new;
+    
+    for (NSDictionary *dict in array) {
+        [resp appendString:dict[@"name"]];
+    }
+    
+    genres = resp;
+    
+    return genres;
 }
 
 @end
