@@ -123,31 +123,36 @@
     
 }
 
-- (void)getGenre:(NSString *)movieId completion:(void (^)(NSString *))completionHandler {
+// Return genre from API
+- (void)getGenre:(NSString *)genreId completion:(void (^)(NSArray *))completionHandler {
     
-    NSString *baseURL1 = @"https://api.themoviedb.org/3/movie/\\";
+    NSString *baseURL1 = @"https://api.themoviedb.org/3/movie/";
     NSString *baseURL2 = @"?api_key=46fc18b76e16ff3966bbb4390154e35e&language=en-US";
-    NSString *resultURL = [NSString stringWithFormat: @"%@%@%@", baseURL1, movieId, baseURL2];
-    NSURL *url = [NSURL URLWithString:resultURL];
-    
-    [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    NSString *imagePath = [NSString stringWithFormat: @"%@%@%@", baseURL1, genreId, baseURL2];
+    NSURL *url = [NSURL URLWithString:imagePath];
         
-        NSError *err;
-        NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
-        
-        if (error) {
-            return;
-        }
-        
-        NSArray *moviesArray = JSON[@"genres"];
-        NSString *genres = NSString.new;
-        Parser *parser = Parser.new;
-        
-        genres = [parser parseGenres:moviesArray];
-        
-        completionHandler(genres);
-        
-    }] resume];
+        [[NSURLSession.sharedSession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            if (error) {
+                return;
+            }
+            
+            // Extracting JSON from data
+            NSError *err;
+            NSDictionary *JSON = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+            
+            // Error handler
+            if (err) {
+                NSLog(@"Failed to serialize data into JSON: %@", err);
+                return;
+            }
+            
+            // Getting results from key results
+            NSArray *genreName = JSON[@"genres"];
+            
+            completionHandler(genreName);
+            
+        }] resume];
 }
 
 // Return image from API

@@ -8,8 +8,25 @@
 
 #import "Parser.h"
 #import "Movie.h"
+#import "Services.h"
+
+@interface Parser () {
+    Services *service;
+}
+
+@end
 
 @implementation Parser
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        service = Services.new;
+    }
+    return self;
+}
 
 #pragma mark - Atomic parsers
 
@@ -22,6 +39,15 @@
     NSNumber *rating = dictionary[@"vote_average"];
     NSString *imageUrl = dictionary[@"poster_path"];
     NSString *movieId = dictionary[@"id"];
+    NSMutableString *genreList = NSMutableString.new;
+    
+        [service getGenre:movieId completion:^(NSArray * genre) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (NSDictionary *genreName in genre) {
+                    [genreList appendFormat:@"%@, ", genreName[@"name"]];
+                }
+            });
+        }];\
     
     // Create object with information
     Movie *movie = Movie.new;
@@ -31,6 +57,7 @@
     movie.movieRating = rating;
     movie.movieImage = imageUrl;
     movie.movieId = movieId;
+    movie.genres = genreList;
     
     return movie;
 }
